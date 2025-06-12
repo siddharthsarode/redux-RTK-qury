@@ -13,11 +13,11 @@
     {
       "id": 5,
       "value": "Exercise",
-      "completed": false
+      "completed": true
     },
     {
       "value": "hello",
-      "completed": false,
+      "completed": true,
       "id": 6
     }
   ]

@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import Task from "./TaskItem";
 import { Link } from "react-router-dom";
-import { useGetTasksQuery } from "./services/apiSlice";
+import {
+  useAddTaskMutation,
+  useDeleteTaskMutation,
+  useGetTasksQuery,
+  useUpdateTaskMutation,
+} from "./services/apiSlice";
 
 export default function Home() {
   const [newTask, setNewTask] = useState("");
@@ -16,6 +21,10 @@ export default function Home() {
     isSuccess,
     error,
   } = useGetTasksQuery();
+
+  const [addTask] = useAddTaskMutation();
+  const [updateTask] = useUpdateTaskMutation();
+  const [deleteTask] = useDeleteTaskMutation();
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -34,34 +43,34 @@ export default function Home() {
   //   }
   // };
 
-  const addTask = async (task) => {
-    await fetch(`${BASE_URL}/tasks`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
-    // getTasks();
-  };
+  // const addTask = async (task) => {
+  //   await fetch(`${BASE_URL}/tasks`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(task),
+  //   });
+  //   // getTasks();
+  // };
 
-  const updateTask = async ({ id, ...updatedTask }) => {
-    await fetch(`${BASE_URL}/tasks/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedTask),
-    });
-    // getTasks();
-  };
+  // const updateTask = async ({ id, ...updatedTask }) => {
+  //   await fetch(`${BASE_URL}/tasks/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(updatedTask),
+  //   });
+  //   // getTasks();
+  // };
 
-  const deleteTask = async (id) => {
-    await fetch(`${BASE_URL}/tasks/${id}`, {
-      method: "DELETE",
-    });
-    // getTasks();
-  };
+  // const deleteTask = async (id) => {
+  //   await fetch(`${BASE_URL}/tasks/${id}`, {
+  //     method: "DELETE",
+  //   });
+  //   // getTasks();
+  // };
 
   return (
     <div className="flex h-screen flex-grow items-start justify-center bg-gray-900 p-4">
